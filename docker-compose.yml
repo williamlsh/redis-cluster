@@ -1,0 +1,5 @@
+version: "3.8"
+services:
+  node:
+    build: .
+    command: redis-server /usr/local/etc/redis/redis.conf
