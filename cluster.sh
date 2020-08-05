@@ -5,20 +5,15 @@ ADDRS=""
 
 function containersAddrs() {
     stdbuf -oL docker network inspect redis-cluster_default -f \
-        '{{range $index, $element := .Containers}}
-            {{with $x := $element.IPv4Address}}
-                {{slice $x 0 13}}
-            {{end}}
+        '{{range $element := .Containers}}
+            {{$element.IPv4Address}}
         {{end}}'
 }
 
 while IFS= read -r line; do
     if [ ! -z "${line// /}" ]; then
-        if [ -z "${ADDRS}" ]; then
-            ADDRS+="$(echo -e "${line}" | tr -d '[:space:]'):${PORT}"
-        else
-            ADDRS+=" $(echo -e "${line}" | tr -d '[:space:]'):${PORT}"
-        fi
+        addr="$(echo -e "${line}" | tr -d '[:space:]' | rev | cut -c 4- | rev):${PORT}"
+        [ -z "${ADDRS}" ] && ADDRS+="${addr}" || ADDRS+=" ${addr}"
     fi
 done <<<"$(containersAddrs)"
 
