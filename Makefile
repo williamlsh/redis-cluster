@@ -13,3 +13,7 @@ logs:
 .PHONY: cluster
 cluster:
 	@./cluster.sh
+
+.PHONY: redis-cli
+redis-cli:
+	@docker-compose exec node redis-cli -c -p 7000
