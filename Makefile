@@ -1,3 +1,5 @@
+SHELL := bash
+
 .PHONY: up
 up:
 	@docker-compose up -d --scale node=6
@@ -29,3 +31,7 @@ nodes-status:
 .PHONY: check-cluster
 check-cluster:
 	@docker-compose exec node redis-cli --cluster check redis-cluster_node_1:7000
+
+.PHONY: auto-reshard
+auto-reshard:
+	@./reshard.sh
