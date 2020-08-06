@@ -28,6 +28,7 @@ function main() {
         ;;
     *)
         echo "Unkonwn role"
+        exit 1
         ;;
     esac
 }
