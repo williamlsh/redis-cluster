@@ -39,3 +39,7 @@ auto-reshard:
 .PHONY: failover
 failover:
 	@./failover.sh
+
+.PHONY: new-node
+new-node:
+	@./add-node.sh
