@@ -14,7 +14,7 @@ logs:
 
 .PHONY: cluster
 cluster:
-	@./cluster.sh
+	@./scripts/cluster.sh
 
 .PHONY: redis-cli
 redis-cli:
@@ -34,12 +34,12 @@ check-cluster:
 
 .PHONY: auto-reshard
 auto-reshard:
-	@./reshard.sh
+	@./scripts/reshard.sh
 
 .PHONY: failover
 failover:
-	@./failover.sh
+	@./scripts/failover.sh
 
 .PHONY: new-node
 new-node:
-	@./add-node.sh
+	@./scripts/add-node.sh
