@@ -35,3 +35,7 @@ check-cluster:
 .PHONY: auto-reshard
 auto-reshard:
 	@./reshard.sh
+
+.PHONY: failover
+failover:
+	@./failover.sh
