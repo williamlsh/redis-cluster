@@ -27,6 +27,9 @@ function main() {
 
     # Add new node to cluster
     addNode "${new_node_addr}:${PORT}" "${old_node_addr}:${PORT}"
+
+    # Manually reshard.
+    docker-compose exec node redis-cli --cluster reshard redis-cluster_node_1:7000
 }
 
 main || exit 1
