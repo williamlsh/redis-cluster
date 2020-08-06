@@ -40,6 +40,10 @@ auto-reshard:
 failover:
 	@./scripts/failover.sh
 
-.PHONY: new-node
-new-node:
-	@./scripts/add-node.sh
+.PHONY: new-master
+new-master:
+	@./scripts/add-node.sh master
+
+.PHONY: new-slave
+new-slave:
+	@./scripts/add-node.sh slave
