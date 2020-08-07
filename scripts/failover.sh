@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 function redisCli() {
-    docker-compose exec node redis-cli -c -p 7000 "$@"
+    docker-compose exec node redis-cli -c "$@"
 }
 
 function terminateMaster() {

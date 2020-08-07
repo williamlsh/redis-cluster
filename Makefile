@@ -1,4 +1,5 @@
 SHELL := bash
+PORT := 6379
 
 .PHONY: up
 up:
@@ -18,19 +19,19 @@ cluster:
 
 .PHONY: redis-cli
 redis-cli:
-	@docker-compose exec node redis-cli -c -p 7000
+	@docker-compose exec node redis-cli -c
 
 .PHONY: reshard
 reshard:
-	@docker-compose exec node redis-cli --cluster reshard redis-cluster_node_1:7000
+	@docker-compose exec node redis-cli --cluster reshard redis-cluster_node_1:$(PORT)
 
 .PHONY: nodes-status
 nodes-status:
-	@docker-compose exec node redis-cli -p 7000 cluster nodes
+	@docker-compose exec node redis-cli cluster nodes
 
 .PHONY: check-cluster
 check-cluster:
-	@docker-compose exec node redis-cli --cluster check redis-cluster_node_1:7000
+	@docker-compose exec node redis-cli --cluster check redis-cluster_node_1:$(PORT)
 
 .PHONY: auto-reshard
 auto-reshard:

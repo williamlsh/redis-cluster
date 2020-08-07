@@ -2,7 +2,7 @@
 
 set -eou pipefail
 
-PORT="7000"
+PORT="6379"
 
 function newNodeAddr() {
     docker container inspect -f \
@@ -34,7 +34,7 @@ function main() {
     addNode "${new_node_addr}:${PORT}" "${old_node_addr}:${PORT}" "$1"
 
     # Manually reshard if new node is master.
-    [ "$1" = "master" ] && docker-compose exec node redis-cli --cluster reshard redis-cluster_node_1:7000 || exit 0
+    [ "$1" = "master" ] && docker-compose exec node redis-cli --cluster reshard redis-cluster_node_1:"${PORT}" || exit 0
 }
 
 main "$1" || exit 1
