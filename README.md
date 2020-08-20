@@ -14,7 +14,7 @@ The most simple way to create a Redis Cluster with Docker compose. For a general
 Creating Redis Cluster with 3 masters and 3 slaves.
 
 ```bash
-sudo make up && sudo make cluster
+sudo make all
 ```
 
 Testing failover.

@@ -1,6 +1,9 @@
 SHELL := bash
 PORT := 6379
 
+.PHONY: all
+all: up cluster
+
 .PHONY: up
 up:
 	@docker-compose up -d --scale node=6
