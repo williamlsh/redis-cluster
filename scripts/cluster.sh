@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -ex
+
 PORT="6379"
 ADDRS=""
 
@@ -17,7 +19,7 @@ while IFS= read -r line; do
     fi
 done <<<"$(containersAddrs)"
 
-docker exec -it redis-cluster_node_1 redis-cli \
+docker exec -it redis-cluster-node-1 redis-cli \
     --cluster create \
     ${ADDRS} \
     --cluster-replicas 1

@@ -1,13 +1,15 @@
 #!/usr/bin/env bash
 
+set -ex
+
 function redisCli() {
-    docker-compose exec node redis-cli -c "$@"
+    docker compose exec node redis-cli -c "$@"
 }
 
 function terminateMaster() {
     redisCli DEBUG SEGFAULT >/dev/null 2>&1
     sleep 10
-    docker-compose start node
+    docker compose start node
 }
 
 function main() {

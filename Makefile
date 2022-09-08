@@ -6,15 +6,15 @@ all: up cluster
 
 .PHONY: up
 up:
-	@docker-compose up -d --scale node=6
+	@docker compose up -d --scale node=6
 
 .PHONY: down
 down:
-	@docker-compose down -v
+	@docker compose down -v
 
 .PHONY: logs
 logs:
-	@docker-compose logs --tail="all" -f
+	@docker compose logs --tail="all" -f
 
 .PHONY: cluster
 cluster:
@@ -22,19 +22,19 @@ cluster:
 
 .PHONY: redis-cli
 redis-cli:
-	@docker-compose exec node redis-cli -c
+	@docker compose exec node redis-cli -c
 
 .PHONY: reshard
 reshard:
-	@docker-compose exec node redis-cli --cluster reshard redis-cluster_node_1:$(PORT)
+	@docker compose exec node redis-cli --cluster reshard redis-cluster-node-1:$(PORT)
 
 .PHONY: nodes-status
 nodes-status:
-	@docker-compose exec node redis-cli cluster nodes
+	@docker compose exec node redis-cli cluster nodes
 
 .PHONY: check-cluster
 check-cluster:
-	@docker-compose exec node redis-cli --cluster check redis-cluster_node_1:$(PORT)
+	@docker compose exec node redis-cli --cluster check redis-cluster-node-1:$(PORT)
 
 .PHONY: auto-reshard
 auto-reshard:
